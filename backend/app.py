@@ -8,15 +8,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 load_dotenv()
-print(f"Current working directory: {os.getcwd()}")
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-print(f"GROQ_API_KEY loaded: {GROQ_API_KEY}")
+def get_groq_api_key() -> str:
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise ValueError("API key for Groq is missing. Please set the GROQ_API_KEY in the .env file.")
+    return api_key
 
-
-if not GROQ_API_KEY:
-    raise ValueError("API key for Groq is missing. Please set the GROQ_API_KEY in the .env file.")
-
+GROQ_API_KEY = get_groq_api_key()
 
 app = FastAPI()
 

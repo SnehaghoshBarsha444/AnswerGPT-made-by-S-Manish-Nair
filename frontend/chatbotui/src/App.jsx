@@ -66,11 +66,11 @@ const App = () => {
   };
 
   return (
-    <div className="bg-zinc-950 fixed inset-0 flex justify-center items-center p-4">
+<div className="bg-gray-100 fixed inset-0 flex justify-center items-center p-4">
 
-      <div className="w-full max-w-lg bg-zinc-900 rounded-lg shadow-lg p-4 sm:p-6">
+      <div className="w-full max-w-lg bg-white rounded-lg shadow-lg p-4 sm:p-6">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-xl text-white sm:text-2xl font-semibold">AnswerGPT</h1>
+          <h1 className="text-xl text-black sm:text-2xl font-semibold">AnswerGPT</h1>
         </div>
 
         <div
@@ -82,7 +82,7 @@ const App = () => {
               key={index}
               className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
-              <div className={`max-w-xs p-3 rounded-lg ${msg.sender === 'user' ? 'bg-blue-600 text-white' : 'bg-zinc-700 text-white'}`}>
+              <div className={`max-w-xs p-3 rounded-lg ${msg.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-green-500 text-white'}`}>
                 {msg.text}
               </div>
             </div>
@@ -90,7 +90,7 @@ const App = () => {
 
           {loading && (
             <div className="flex justify-start">
-              <div className="max-w-xs p-3 rounded-lg bg-gray-900 text-white animate-pulse">
+              <div className="max-w-xs p-3 rounded-lg bg-gray-300 text-black animate-pulse">
                 AI is typing...
               </div>
             </div>
@@ -104,7 +104,7 @@ const App = () => {
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full p-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-zinc-950 text-white text-sm sm:text-base"
+              className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-black text-sm sm:text-base shadow"
               placeholder="Type your message..."
             />
             <button
