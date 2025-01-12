@@ -72,39 +72,26 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the code
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Step 2: Setup Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
-      # Step 3: Inject GROQ_API_KEY Secret as Environment Variable
       - name: Export GROQ_API_KEY
         run: echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" >> $GITHUB_ENV
 
-      # Step 4: Upload artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
 
-      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
-      # Step 6: Test GROQ_API_KEY Usage (Optional)
-      - name: Test GROQ_API_KEY
-        run: |
-          echo "Using GROQ_API_KEY in deployment:"
-          echo $GROQ_API_KEY
